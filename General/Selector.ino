@@ -32,7 +32,7 @@ void selector_loop() {
   }
   
   if(channel != selector_history) {
-    selector_change(channel, selector_history);
+    selector_change(channel);
     selector_history = channel;
   }
 }
