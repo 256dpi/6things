@@ -29,6 +29,7 @@ void setup() {
   
   selector_setup();
   button_setup();
+  light_setup();
 
   if (client.connect(pot_id, pot_key, pot_secret)) {
     digitalWrite(13, HIGH);
@@ -40,9 +41,12 @@ void loop() {
   client.loop();
   selector_loop();
   button_loop();
+  light_loop();
 }
 
-void messageReceived(String topic, String payload, char * bytes, unsigned int length) {}
+void messageReceived(String topic, String payload, char * bytes, unsigned int length) {
+  light_on();
+}
 
 /* Selector */
 
