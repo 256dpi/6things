@@ -17,7 +17,8 @@ const char * pot_id = ID;
 const char * pot_key = KEY;
 const char * pot_secret = SECRET;
 
-String current_channel = String("channel/0");
+String channel = String("channel/0");
+boolean is_on = false;
 
 YunMQTTClient client("connect.shiftr.io", 1883);
 
@@ -41,23 +42,34 @@ void loop() {
   client.loop();
   selector_loop();
   button_loop();
-  light_loop();
 }
 
 void messageReceived(String topic, String payload, char * bytes, unsigned int length) {
-  light_on();
+  if(payload.equals("1")) {
+    is_on = true;
+    light_on();
+  } else {
+    is_on = false;
+    light_off();
+  }
 }
 
 /* Selector */
 
-void selector_change(int channel) {
-  client.unsubscribe(current_channel);
-  current_channel = String("channel/") + String(channel);
-  client.subscribe(current_channel);
+void selector_change(int c) {
+  client.unsubscribe(channel);
+  channel = String("channel/") + String(c);
+  client.subscribe(channel);
 }
 
 /* Button */
 
 void button_pressed() {
-  client.publish(current_channel);
+  if(is_on) {
+    is_on = false;
+    client.publish(channel, "0");
+  } else {
+    is_on = true;
+    client.publish(channel, "1");
+  }
 }
