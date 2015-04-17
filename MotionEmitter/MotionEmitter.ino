@@ -1,12 +1,12 @@
 /**
- * 6things - General
+ * 6things - Light Detector
  *
  * 6things Project: Events, logics and actions.
  */
 
-#define ID "g1"
-#define KEY "d70579f150265bcd"
-#define SECRET "cb710bde99160e0a71119f51663b775b"
+#define ID "motion-emitter"
+#define KEY "0c90c3f09b4fa34c"
+#define SECRET "8125de517a549ceb426765d4ceb12414"
 
 /* --------------------------------------------------- */
 
@@ -17,8 +17,8 @@ const char * thing_id = ID;
 const char * thing_key = KEY;
 const char * thing_secret = SECRET;
 
-String channel = String("channel/0");
-boolean is_on = false;
+String channel;
+boolean selected = false;
 
 YunMQTTClient client("connect.shiftr.io", 1883);
 
@@ -26,11 +26,11 @@ unsigned long lastMillis = 0;
 
 void setup() {
   Bridge.begin();
+  Serial.begin(9600);
   digitalWrite(13, LOW);
   
+  client.installBridge(false);
   selector_setup();
-  button_setup();
-  light_setup();
 
   if (client.connect(thing_id, thing_key, thing_secret)) {
     digitalWrite(13, HIGH);
@@ -40,35 +40,22 @@ void setup() {
 void loop() {
   client.loop();
   selector_loop();
-  button_loop();
 }
 
 void messageReceived(String topic, String payload, char * bytes, unsigned int length) {
-  if(payload.equals("1")) {
-    is_on = true;
-    light_on();
-  } else {
-    is_on = false;
-    light_off();
-  }
+  haptuator_set(payload.toFloat());
 }
 
 /* Selector */
 
 void selector_change(int c) {
-  client.unsubscribe(channel);
+  if(!selected) {
+    selected = true;
+  } else {
+    client.unsubscribe(channel);
+  }
+  
   channel = String("channel/") + String(c);
   client.subscribe(channel);
 }
 
-/* Button */
-
-void button_pressed() {
-  if(is_on) {
-    is_on = false;
-    client.publish(channel, "0");
-  } else {
-    is_on = true;
-    client.publish(channel, "1");
-  }
-}
