@@ -7,5 +7,5 @@
 /* --------------------------------------------------- */
 
 void vibrator_set(float val) {
-  tone(VIBRATOR_PIN, map(val, 0, 100, 675, 1024));
+  analogWrite(VIBRATOR_PIN, map(val, 0, 100, 825, 1024));
 }

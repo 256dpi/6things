@@ -12,7 +12,6 @@ float channel1 = 0;
 float channel2 = 0;
 float channel3 = 0;
 
-
 void setup() {
   size(600, 600);
   
