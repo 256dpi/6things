@@ -28,4 +28,3 @@ void light_read() {
     light_history = v;
   }
 }
-

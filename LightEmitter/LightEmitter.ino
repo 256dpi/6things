@@ -59,4 +59,3 @@ void selector_change(int c) {
   channel = String("channel/") + String(c);
   client.subscribe(channel);
 }
-

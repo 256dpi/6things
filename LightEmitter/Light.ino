@@ -22,4 +22,3 @@ void light_set(float value) {
   }
   light_pixels.show();
 }
-

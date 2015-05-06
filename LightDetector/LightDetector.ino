@@ -60,4 +60,3 @@ void light_change(float val) {
     client.publish(channel, String(val));
   }
 }
-
