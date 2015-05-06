@@ -16,8 +16,7 @@ void light_setup() {
 
 void light_set(float value) {
   for(int i=0; i<16; i++) {
-    int shade = value / 100 * 255;
-    Serial.println(shade);
+    int shade = map(value, 0, 100, 0, 255);
     light_pixels.setPixelColor(i, light_pixels.Color(shade, shade, shade));
   }
   light_pixels.show();

@@ -26,7 +26,6 @@ unsigned long lastMillis = 0;
 
 void setup() {
   Bridge.begin();
-  Serial.begin(9600);
   digitalWrite(13, LOW);
   
   client.installBridge(false);
