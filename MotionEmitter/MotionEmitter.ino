@@ -26,7 +26,6 @@ unsigned long lastMillis = 0;
 
 void setup() {
   Bridge.begin();
-  Serial.begin(9600);
   digitalWrite(13, LOW);
   
   client.installBridge(false);
@@ -43,7 +42,7 @@ void loop() {
 }
 
 void messageReceived(String topic, String payload, char * bytes, unsigned int length) {
-  haptuator_set(payload.toFloat());
+  vibrator_set(payload.toFloat());
 }
 
 /* Selector */
@@ -58,4 +57,3 @@ void selector_change(int c) {
   channel = String("channel/") + String(c);
   client.subscribe(channel);
 }
-
