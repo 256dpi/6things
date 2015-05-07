@@ -24,7 +24,7 @@ void force_read() {
   int v = analogRead(FORCE_PIN);
   
   if(v != force_history) {
-    force_change(constrain(map(v, 550, 1023.0, 0, 100.0), 0, 100));
+    force_change(constrain(map(v, 900, 1000, 0, 100), 0, 100));
     force_history = v;
   }
 }

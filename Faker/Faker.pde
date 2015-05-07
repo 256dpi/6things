@@ -28,7 +28,7 @@ void draw() {
     lastFrame = frameCount;
     if(mouseY != oldValue) {
       oldValue = mouseY;
-      float value = (height - mouseY) / float(height) * 100.0;
+      float value = constrain((height - mouseY) / float(height) * 100.0, 0, 100);
       client.publish("channel/" + channel, Float.toString(value));
     }
     drawRect(0, 0, 200, height - mouseY);

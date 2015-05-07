@@ -1,0 +1,60 @@
+/**
+ * 6things - Force Emitter
+ *
+ * 6things Project: Events, logics and actions.
+ */
+
+#define ID "force-emitter"
+#define KEY "0c90c3f09b4fa34c"
+#define SECRET "8125de517a549ceb426765d4ceb12414"
+
+/* --------------------------------------------------- */
+
+#include <Bridge.h>
+#include <YunMQTTClient.h>
+
+const char * thing_id = ID;
+const char * thing_key = KEY;
+const char * thing_secret = SECRET;
+
+String channel;
+boolean selected = false;
+
+YunMQTTClient client("connect.shiftr.io", 1883);
+
+unsigned long lastMillis = 0;
+
+void setup() {
+  Bridge.begin();
+  digitalWrite(13, LOW);
+  
+  client.installBridge(false);
+  selector_setup();
+  force_setup();
+
+  if (client.connect(thing_id, thing_key, thing_secret)) {
+    digitalWrite(13, HIGH);
+  }
+}
+
+void loop() {
+  client.loop();
+  selector_loop();
+}
+
+void messageReceived(String topic, String payload, char * bytes, unsigned int length) {
+  force_set(payload.toFloat());
+}
+
+/* Selector */
+
+void selector_change(int c) {
+  if(!selected) {
+    selected = true;
+  } else {
+    client.unsubscribe(channel);
+  }
+  
+  channel = String("channel/") + String(c);
+  client.subscribe(channel);
+}
