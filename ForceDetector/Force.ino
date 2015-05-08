@@ -10,7 +10,7 @@
 
 /* --------------------------------------------------- */
 
-int force_history = 0;
+float force_history = 0;
 long long force_last_read = 0;
 
 void force_loop() {
@@ -21,10 +21,10 @@ void force_loop() {
 }
 
 void force_read() {
-  int v = analogRead(FORCE_PIN);
+  float v = constrain(map(analogRead(FORCE_PIN), 900, 1000, 0, 100), 0, 100);
   
   if(v != force_history) {
-    force_change(constrain(map(v, 900, 1000, 0, 100), 0, 100));
+    force_change(v);
     force_history = v;
   }
 }
