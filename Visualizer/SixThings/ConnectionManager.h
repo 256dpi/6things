@@ -14,7 +14,7 @@
 
 - (void)connectionManagerDidEstablishConnection;
 - (void)connectionManagerDidReceiveValue:(NSNumber*)channel withValue:(NSNumber*)value;
-
+- (void)connectionManagerDidReceivePresence:(NSString*)box;
 @end
 
 @interface ConnectionManager : NSObject

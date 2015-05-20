@@ -28,7 +28,11 @@
 }
 
 - (void)connectionManagerDidReceiveValue:(NSNumber*)channel withValue:(NSNumber*)value {
-  NSLog(@"receved %@ - %@", channel, value);
+  NSLog(@"value: %@ - %@", channel, value);
+}
+
+- (void)connectionManagerDidReceivePresence:(NSString *)box {
+  NSLog(@"presence %@", box);
 }
 
 - (void)dealloc {
