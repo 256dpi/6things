@@ -24,7 +24,7 @@ void light_read() {
   int v = analogRead(LIGHT_PIN);
   
   if(v != light_history) {
-    light_change(map(v, 50, 950, 0, 100));
+    light_change(constrain(map(v, 900, 1000, 0, 100), 0, 100));
     light_history = v;
   }
 }

@@ -21,7 +21,7 @@ void force_loop() {
 }
 
 void force_read() {
-  float v = constrain(map(analogRead(FORCE_PIN), 900, 1000, 0, 100), 0, 100);
+  float v = constrain(map(analogRead(FORCE_PIN), 0, 200, 0, 100), 0, 100);
   
   if(v != force_history) {
     force_change(v);

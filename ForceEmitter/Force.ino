@@ -15,6 +15,6 @@ void force_setup() {
 }
 
 void force_set(float value) {
-  int val = map(value, 0, 100, 65, 45);
+  int val = map(value, 0, 100, 47, 32);
   servo.write(val);
 }
