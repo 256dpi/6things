@@ -5,8 +5,8 @@
  * - selector_change(channel)
  */
  
-#define SELECTOR_ONE 2
-#define SELECTOR_TWO 3
+#define SELECTOR_ONE 3
+#define SELECTOR_TWO 2
 
 /* --------------------------------------------------- */
 

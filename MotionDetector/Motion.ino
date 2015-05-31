@@ -36,7 +36,7 @@ void motion_read() {
     int dy = abs(motion_y_history - y);
     int dz = abs(motion_z_history - z);
     int d = dx + dy + dz;
-    int v = constrain(map(d, 0, 200, 0, 100), 0, 100);
+    int v = constrain(map(d, 0, 150, 0, 100), 0, 100);
     
     if(motion_v_history != v) {
       motion_change(v);
