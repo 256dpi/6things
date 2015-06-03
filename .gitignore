@@ -2,3 +2,4 @@
 *.xcuserdatad
 *.xccheckout
 Visualizer/Pods
+Controller/node_modules/

@@ -1,0 +1,8 @@
+{
+  "name": "controller",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "simple-ssh": "^0.8.5"
+  }
+}
