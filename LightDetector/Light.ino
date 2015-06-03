@@ -10,7 +10,7 @@
 
 /* --------------------------------------------------- */
 
-int light_history = 0;
+float light_history = 0;
 long long light_last_read = 0;
 
 void light_loop() {
@@ -22,9 +22,10 @@ void light_loop() {
 
 void light_read() {
   int v = analogRead(LIGHT_PIN);
+  float f = constrain(map(v, 900, 1000, 0, 100), 0, 100);
   
-  if(v != light_history) {
-    light_change(constrain(map(v, 900, 1000, 0, 100), 0, 100));
-    light_history = v;
+  if(f != light_history) {
+    light_change(f);
+    light_history = f;
   }
 }
