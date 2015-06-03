@@ -15,31 +15,13 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oKY-yy-DSu">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                                <color key="backgroundColor" red="0.1019607843" green="0.66666666669999997" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="t8z-D4-258"/>
-                                </connections>
-                            </webView>
-                        </subviews>
                         <color key="backgroundColor" red="0.1019607843" green="0.66666666669999997" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="oKY-yy-DSu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8vG-Oe-WtQ"/>
-                            <constraint firstAttribute="trailing" secondItem="oKY-yy-DSu" secondAttribute="trailing" id="HoC-8a-ROB"/>
-                            <constraint firstItem="oKY-yy-DSu" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="qJR-ag-Aab"/>
-                            <constraint firstItem="oKY-yy-DSu" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="rbc-rF-X8j"/>
-                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
-                    <connections>
-                        <outlet property="webView" destination="oKY-yy-DSu" id="d0g-Pe-WVd"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
