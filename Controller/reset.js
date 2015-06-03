@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
 var NODES = [
-  '192.168.2.141',
-  '192.168.2.157',
-  '192.168.2.89',
-  '192.168.2.44',
-  '192.168.2.179',
-  '192.168.2.156'
+  'yun1.local', // '192.168.2.141',
+  'yun12.local', // '192.168.2.157',
+  'yun10.local', // '192.168.2.89',
+  'yun2.local', // '192.168.2.44',
+  'yun3.local', // '192.168.2.179',
+  'yun5.local' // '192.168.2.156'
 ]
 
 var SSH = require('simple-ssh');
@@ -17,12 +17,26 @@ NODES.forEach(function(n){
   var ssh = new SSH({
     host: n,
     user: 'root',
-    pass: 'arduino'
+    pass: 'arduino',
+    timeout: 30 * 1000
   });
 
   ssh.exec('reset-mcu', {
     out: function(stdout) {
-      console.log(n, ':', stdout);
+      console.log(n, '- out:', stdout);
+    },
+    err: function(stderr) {
+      console.log(n, '- err:', stderr);
+    },
+    exit: function(code) {
+      console.log(n, '- exit with:', code);
     }
-  }).start();
+  }).start({
+    success: function() {
+      console.log(n, '- connected:', n);
+    },
+    fail: function() {
+      console.log(n, '- failed:', n);
+    }
+  });
 });
