@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WKNavigationDelegate {
   var webView: WKWebView?
   var timer: NSTimer?
   
@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     super.loadView()
     
     self.webView = WKWebView()
+    self.webView?.navigationDelegate = self;
     self.view = self.webView
     
     self.timer = NSTimer.scheduledTimerWithTimeInterval(360.0, target: self, selector: "reload:", userInfo: nil, repeats: true)
@@ -34,6 +35,10 @@ class ViewController: UIViewController {
   
   override func prefersStatusBarHidden() -> Bool {
     return true
+  }
+  
+  func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+    self.webView!.evaluateJavaScript("$(function(){ $('.action.details').trigger('touchstart'); });", completionHandler: nil)
   }
   
   func reload(timer:NSTimer){
